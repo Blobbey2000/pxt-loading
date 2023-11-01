@@ -1,8 +1,14 @@
-enum Directions {
-    //% block="forwards"
-    Forwards,
-    //% block="backwards"
-    Backwards
+enum HorizontalDirections {
+    //% block="right"
+    Right,
+    //% block="left"
+    Left
+}
+enum VerticalDirections {
+    //% block="up"
+    Up,
+    //% block="down"
+    Down
 }
 let changingY1 = 0
 let changingY2 = 0
@@ -83,7 +89,7 @@ namespace Loading {
     //% block="make vertical loading screen with speed $speed and start color $startingColor with end color $endingColor on z $z going $direction"
     //% speed.defl="25"
     //% direction.defl="forwards"
-    export function loadingScreen1(speed: number, startingColor: number, endingColor: number, z: number, direction: Directions) {
+    export function loadingScreen1(speed: number, startingColor: number, endingColor: number, z: number, direction: VerticalDirections) {
         let loadingSprite = sprites.create(img`
     ................................................................................................................................................................
     ................................................................................................................................................................
@@ -208,9 +214,9 @@ namespace Loading {
 `, SpriteKind.Food)
         loadingSprite.z = z
         loadingSprite.image.fill(startingColor)
-        if (direction == 0) {
+        if (direction == 1) {
             loadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
-        } else if (direction == 1) {
+        } else if (direction == 0) {
             unloadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
         }
     }
@@ -220,7 +226,7 @@ namespace Loading {
     //% block="make horizontal loading screen with speed $speed and start color $startingColor with end color $endingColor on z $z going $direction"
     //% speed.defl="25"
     //% direction.defl="forwards"
-    export function loadingScreen2(speed: number, startingColor: number, endingColor: number, z: number, direction: Directions) {
+    export function loadingScreen2(speed: number, startingColor: number, endingColor: number, z: number, direction: HorizontalDirections) {
         let loadingSprite = sprites.create(img`
     ................................................................................................................................................................
     ................................................................................................................................................................
@@ -358,7 +364,7 @@ namespace Loading {
     //% speed.defl="25"
     //% direction.defl="backwards"
     //% weight=2
-    export function unloadingScreen1(speed: number, startingColor: number, endingColor: number, z: number, direction: Directions) {
+    export function unloadingScreen1(speed: number, startingColor: number, endingColor: number, z: number, direction: VerticalDirections) {
         let loadingSprite = sprites.create(img`
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
@@ -483,9 +489,9 @@ namespace Loading {
 `, SpriteKind.Food)
         loadingSprite.z = z
         loadingSprite.image.fill(startingColor)
-        if (direction == 1) {
+        if (direction == 0) {
             unloadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
-        } else if (direction == 0) {
+        } else if (direction == 1) {
             loadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
         }
     }
@@ -496,7 +502,7 @@ namespace Loading {
     //% speed.defl="25"
     //% direction.defl="backwards"
     //% weight=3
-    export function unloadingScreen2(speed: number, startingColor: number, endingColor: number, z: number, direction: Directions) {
+    export function unloadingScreen2(speed: number, startingColor: number, endingColor: number, z: number, direction: HorizontalDirections) {
         let loadingSprite = sprites.create(img`
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
