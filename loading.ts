@@ -1,3 +1,9 @@
+enum Directions {
+    //% block="forwards"
+    Forwards,
+    //% block="backwards"
+    Backwards
+}
 let changingY1 = 0
 let changingY2 = 0
 let changingX1 = 0
@@ -77,7 +83,7 @@ namespace Loading {
     //% block="make vertical loading screen with speed $speed and start color $startingColor with end color $endingColor on z $z going $direction"
     //% speed.defl="25"
     //% direction.defl="forwards"
-    export function loadingScreen1(speed: number, startingColor: number, endingColor: number, z: number, direction: string) {
+    export function loadingScreen1(speed: number, startingColor: number, endingColor: number, z: number, direction: Directions) {
         let loadingSprite = sprites.create(img`
     ................................................................................................................................................................
     ................................................................................................................................................................
@@ -202,9 +208,9 @@ namespace Loading {
 `, SpriteKind.Food)
         loadingSprite.z = z
         loadingSprite.image.fill(startingColor)
-        if (direction == "forwards") {
+        if (direction == 0) {
             loadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
-        } else if (direction == "backwards") {
+        } else if (direction == 1) {
             unloadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
         }
     }
@@ -214,7 +220,7 @@ namespace Loading {
     //% block="make horizontal loading screen with speed $speed and start color $startingColor with end color $endingColor on z $z going $direction"
     //% speed.defl="25"
     //% direction.defl="forwards"
-    export function loadingScreen2(speed: number, startingColor: number, endingColor: number, z: number, direction: string) {
+    export function loadingScreen2(speed: number, startingColor: number, endingColor: number, z: number, direction: Directions) {
         let loadingSprite = sprites.create(img`
     ................................................................................................................................................................
     ................................................................................................................................................................
@@ -339,9 +345,9 @@ namespace Loading {
 `, SpriteKind.Food)
         loadingSprite.z = z
         loadingSprite.image.fill(startingColor)
-        if (direction == "forwards") {
+        if (direction == 0) {
             loadingHorizontal(loadingSprite, speed, endingColor, 0, 119, z)
-        } else if (direction == "backwards") {
+        } else if (direction == 1) {
             unloadingHorizontal(loadingSprite, speed, endingColor, 0, 119, z)
         }
     }
@@ -352,7 +358,7 @@ namespace Loading {
     //% speed.defl="25"
     //% direction.defl="backwards"
     //% weight=2
-    export function unloadingScreen1(speed: number, startingColor: number, endingColor: number, z: number, direction: string) {
+    export function unloadingScreen1(speed: number, startingColor: number, endingColor: number, z: number, direction: Directions) {
         let loadingSprite = sprites.create(img`
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
@@ -477,9 +483,9 @@ namespace Loading {
 `, SpriteKind.Food)
         loadingSprite.z = z
         loadingSprite.image.fill(startingColor)
-        if (direction == "backwards") {
+        if (direction == 1) {
             unloadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
-        } else if (direction == "forwards") {
+        } else if (direction == 0) {
             loadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
         }
     }
@@ -490,7 +496,7 @@ namespace Loading {
     //% speed.defl="25"
     //% direction.defl="backwards"
     //% weight=3
-    export function unloadingScreen2(speed: number, startingColor: number, endingColor: number, z: number, direction: string) {
+    export function unloadingScreen2(speed: number, startingColor: number, endingColor: number, z: number, direction: Directions) {
         let loadingSprite = sprites.create(img`
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
@@ -615,9 +621,9 @@ namespace Loading {
 `, SpriteKind.Food)
         loadingSprite.z = z
         loadingSprite.image.fill(startingColor)
-        if (direction == "backwards") {
+        if (direction == 1) {
             unloadingHorizontal(loadingSprite, speed, endingColor, 0, 119, z)
-        } else if (direction == "forwards") {
+        } else if (direction == 0) {
             loadingHorizontal(loadingSprite, speed, endingColor, 0, 119, z)
         }
     }
