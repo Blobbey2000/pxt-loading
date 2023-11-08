@@ -16,81 +16,81 @@ let changingX1 = 0
 let changingX2 = 0
 let currentlyLoading = false
 function loadingVertical(sprite: Sprite, speed: number, color: number, x1: number, x2: number, z: number) {
-    currentlyLoading = true
-    sprite.setFlag(SpriteFlag.RelativeToCamera, true)
-    for (let index = 0; index < 120; index++) {
-        sprite.image.drawLine(x1, changingY1, x2, changingY2, color)
-        sprite.z = z
-        changingY1 = changingY1 + 1
-        changingY2 = changingY2 + 1
-        pause(speed)
-    }
-    currentlyLoading = false
-    changingY1 = 0
-    changingY2 = 0
-    sprites.destroy(sprite)
+currentlyLoading = true
+sprite.setFlag(SpriteFlag.RelativeToCamera, true)
+for (let index = 0; index < 120; index++) {
+sprite.image.drawLine(x1, changingY1, x2, changingY2, color)
+sprite.z = z
+changingY1 = changingY1 + 1
+changingY2 = changingY2 + 1
+pause(speed)
+}
+currentlyLoading = false
+changingY1 = 0
+changingY2 = 0
+sprites.destroy(sprite)
 }
 function loadingHorizontal(sprite: Sprite, speed: number, color: number, y1: number, y2: number, z: number) {
-    currentlyLoading = true
-    sprite.setFlag(SpriteFlag.RelativeToCamera, true)
-    for (let index = 0; index < 160; index++) {
-        sprite.image.drawLine(changingX1, y1, changingX2, y2, color)
-        sprite.z = z
-        changingX1 = changingX1 + 1
-        changingX2 = changingX2 + 1
-        pause(speed)
-    }
-    currentlyLoading = false
-    changingX1 = 0
-    changingX2 = 0
-    sprites.destroy(sprite)
+currentlyLoading = true
+sprite.setFlag(SpriteFlag.RelativeToCamera, true)
+for (let index = 0; index < 160; index++) {
+sprite.image.drawLine(changingX1, y1, changingX2, y2, color)
+sprite.z = z
+changingX1 = changingX1 + 1
+changingX2 = changingX2 + 1
+pause(speed)
+}
+currentlyLoading = false
+changingX1 = 0
+changingX2 = 0
+sprites.destroy(sprite)
 }
 function unloadingVertical(sprite: Sprite, speed: number, color: number, x1: number, x2: number, z: number) {
-    currentlyLoading = true
-    changingY1 = 120
-    changingY2 = 120
-    sprite.setFlag(SpriteFlag.RelativeToCamera, true)
-    for (let index = 0; index < 120; index++) {
-        sprite.image.drawLine(x1, changingY1, x2, changingY2, color)
-        sprite.z = z
-        changingY1 = changingY1 - 1
-        changingY2 = changingY2 - 1
-        pause(speed)
-    }
-    currentlyLoading = false
-    changingY1 = 0
-    changingY2 = 0
-    sprites.destroy(sprite)
+currentlyLoading = true
+changingY1 = 120
+changingY2 = 120
+sprite.setFlag(SpriteFlag.RelativeToCamera, true)
+for (let index = 0; index < 120; index++) {
+sprite.image.drawLine(x1, changingY1, x2, changingY2, color)
+sprite.z = z
+changingY1 = changingY1 - 1
+changingY2 = changingY2 - 1
+pause(speed)
+}
+currentlyLoading = false
+changingY1 = 0
+changingY2 = 0
+sprites.destroy(sprite)
 }
 function unloadingHorizontal(sprite: Sprite, speed: number, color: number, y1: number, y2: number, z: number) {
-    currentlyLoading = true
-    changingX1 = 160
-    changingX2 = 160
-    sprite.setFlag(SpriteFlag.RelativeToCamera, true)
-    for (let index = 0; index < 160; index++) {
-        sprite.image.drawLine(changingX1, y1, changingX2, y2, color)
-        sprite.z = z
-        changingX1 = changingX1 - 1
-        changingX2 = changingX2 - 1
-        pause(speed)
-    }
-    currentlyLoading = false
-    changingX1 = 0
-    changingX2 = 0
-    sprites.destroy(sprite)
+currentlyLoading = true
+changingX1 = 160
+changingX2 = 160
+sprite.setFlag(SpriteFlag.RelativeToCamera, true)
+for (let index = 0; index < 160; index++) {
+sprite.image.drawLine(changingX1, y1, changingX2, y2, color)
+sprite.z = z
+changingX1 = changingX1 - 1
+changingX2 = changingX2 - 1
+pause(speed)
+}
+currentlyLoading = false
+changingX1 = 0
+changingX2 = 0
+sprites.destroy(sprite)
 }
 //% color="#1F7EC7" 
 //% icon="\uf110"
 //% blockGap=8
 namespace Loading {
-    /**
-     * Creates a vertical loading screen using the inputted settings.
-     */
-    //% block="make vertical loading screen with speed $speed and start color $startingColor with end color $endingColor on z $z going $direction"
-    //% speed.defl="25"
-    //% direction.defl="forwards"
-    export function loadingScreen1(speed: number, startingColor: number, endingColor: number, z: number, direction: VerticalDirections) {
-        let loadingSprite = sprites.create(img`
+/**
+ * Creates a vertical loading screen using the inputted settings.
+ */
+//% block="make vertical loading screen with speed $speed and start color $startingColor with end color $endingColor on z $z going $direction"
+//% speed.defl="25"
+//% direction.defl="forwards"
+export function loadingScreen1(speed: number, startingColor: number, endingColor: number, z: number, direction: VerticalDirections) {
+let loadingSprite = sprites.create(img`
     ................................................................................................................................................................
     ................................................................................................................................................................
     ................................................................................................................................................................
@@ -212,22 +212,22 @@ namespace Loading {
     ................................................................................................................................................................
     ................................................................................................................................................................
 `, SpriteKind.Food)
-        loadingSprite.z = z
-        loadingSprite.image.fill(startingColor)
-        if (direction == 1) {
-            loadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
-        } else if (direction == 0) {
-            unloadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
-        }
-    }
-    /**
-     * Creates a horizontal loading screen using the inputted settings.
-     */
-    //% block="make horizontal loading screen with speed $speed and start color $startingColor with end color $endingColor on z $z going $direction"
-    //% speed.defl="25"
-    //% direction.defl="forwards"
-    export function loadingScreen2(speed: number, startingColor: number, endingColor: number, z: number, direction: HorizontalDirections) {
-        let loadingSprite = sprites.create(img`
+loadingSprite.z = z
+loadingSprite.image.fill(startingColor)
+if (direction == 1) {
+loadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
+} else if (direction == 0) {
+unloadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
+}
+}
+/**
+ * Creates a horizontal loading screen using the inputted settings.
+ */
+//% block="make horizontal loading screen with speed $speed and start color $startingColor with end color $endingColor on z $z going $direction"
+//% speed.defl="25"
+//% direction.defl="forwards"
+export function loadingScreen2(speed: number, startingColor: number, endingColor: number, z: number, direction: HorizontalDirections) {
+let loadingSprite = sprites.create(img`
     ................................................................................................................................................................
     ................................................................................................................................................................
     ................................................................................................................................................................
@@ -349,23 +349,23 @@ namespace Loading {
     ................................................................................................................................................................
     ................................................................................................................................................................
 `, SpriteKind.Food)
-        loadingSprite.z = z
-        loadingSprite.image.fill(startingColor)
-        if (direction == 0) {
-            loadingHorizontal(loadingSprite, speed, endingColor, 0, 119, z)
-        } else if (direction == 1) {
-            unloadingHorizontal(loadingSprite, speed, endingColor, 0, 119, z)
-        }
-    }
-    /**
-     * Creates a vertical unloading screen using the inputted settings.
-     */
-    //% block="make vertical unloading screen with speed $speed and start color $startingColor with end color $endingColor on z $z going $direction"
-    //% speed.defl="25"
-    //% direction.defl="backwards"
-    //% weight=2
-    export function unloadingScreen1(speed: number, startingColor: number, endingColor: number, z: number, direction: VerticalDirections) {
-        let loadingSprite = sprites.create(img`
+loadingSprite.z = z
+loadingSprite.image.fill(startingColor)
+if (direction == 0) {
+loadingHorizontal(loadingSprite, speed, endingColor, 0, 119, z)
+} else if (direction == 1) {
+unloadingHorizontal(loadingSprite, speed, endingColor, 0, 119, z)
+}
+}
+/**
+ * Creates a vertical unloading screen using the inputted settings.
+ */
+//% block="make vertical unloading screen with speed $speed and start color $startingColor with end color $endingColor on z $z going $direction"
+//% speed.defl="25"
+//% direction.defl="backwards"
+//% weight=2
+export function unloadingScreen1(speed: number, startingColor: number, endingColor: number, z: number, direction: VerticalDirections) {
+let loadingSprite = sprites.create(img`
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
@@ -487,23 +487,23 @@ namespace Loading {
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 `, SpriteKind.Food)
-        loadingSprite.z = z
-        loadingSprite.image.fill(startingColor)
-        if (direction == 0) {
-            unloadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
-        } else if (direction == 1) {
-            loadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
-        }
-    }
-    /**
-     * Creates a horizontal unloading screen using the inputted settings.
-     */
-    //% block="make horizontal unloading screen with speed $speed and start color $startingColor with end color $endingColor on z $z going $direction"
-    //% speed.defl="25"
-    //% direction.defl="backwards"
-    //% weight=3
-    export function unloadingScreen2(speed: number, startingColor: number, endingColor: number, z: number, direction: HorizontalDirections) {
-        let loadingSprite = sprites.create(img`
+loadingSprite.z = z
+loadingSprite.image.fill(startingColor)
+if (direction == 0) {
+unloadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
+} else if (direction == 1) {
+loadingVertical(loadingSprite, speed, endingColor, 0, 159, z)
+}
+}
+/**
+ * Creates a horizontal unloading screen using the inputted settings.
+ */
+//% block="make horizontal unloading screen with speed $speed and start color $startingColor with end color $endingColor on z $z going $direction"
+//% speed.defl="25"
+//% direction.defl="backwards"
+//% weight=3
+export function unloadingScreen2(speed: number, startingColor: number, endingColor: number, z: number, direction: HorizontalDirections) {
+let loadingSprite = sprites.create(img`
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
@@ -625,20 +625,21 @@ namespace Loading {
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
     1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 `, SpriteKind.Food)
-        loadingSprite.z = z
-        loadingSprite.image.fill(startingColor)
-        if (direction == 1) {
-            unloadingHorizontal(loadingSprite, speed, endingColor, 0, 119, z)
-        } else if (direction == 0) {
-            loadingHorizontal(loadingSprite, speed, endingColor, 0, 119, z)
-        }
-    }
-    /**
-     * Pauses the game until the current loading animation is finished.
-     */
-    //% block="pause until loading is finished"
-    //% weight=1
-    export function pauseUntilLoadingFinished() {
-        pauseUntil(() => !currentlyLoading)
-    }
+loadingSprite.z = z
+loadingSprite.image.fill(startingColor)
+if (direction == 1) {
+unloadingHorizontal(loadingSprite, speed, endingColor, 0, 119, z)
+} else if (direction == 0) {
+loadingHorizontal(loadingSprite, speed, endingColor, 0, 119, z)
+}
+}
+
+/**
+ * Returns true if currently loading, false if not.
+ */
+//% block="currently loading"
+//% weight=1
+export function ifCurrentlyLoading() {
+return currentlyLoading;
+}
 }
